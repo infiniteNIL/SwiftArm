@@ -1,0 +1,322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC47C2941DA97E8D00A0C357 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */; };
+		DC47C2961DA97E8D00A0C357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC47C2951DA97E8D00A0C357 /* Assets.xcassets */; };
+		DC47C2991DA97E8D00A0C357 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC47C2971DA97E8D00A0C357 /* MainMenu.xib */; };
+		DC47C2AB1DA9909F00A0C357 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC47C2AA1DA9909F00A0C357 /* IOKit.framework */; };
+		DC47C2B21DAB1C5400A0C357 /* OWIRobotArm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DC47C2901DA97E8D00A0C357 /* SwiftArm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftArm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DC47C2951DA97E8D00A0C357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC47C2981DA97E8D00A0C357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		DC47C29A1DA97E8D00A0C357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC47C2AA1DA9909F00A0C357 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		DC47C2B01DA99B3300A0C357 /* SwiftArmBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftArmBridgingHeader.h; sourceTree = "<group>"; };
+		DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OWIRobotArm.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC47C28D1DA97E8D00A0C357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC47C2AB1DA9909F00A0C357 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC47C2871DA97E8D00A0C357 = {
+			isa = PBXGroup;
+			children = (
+				DC47C2921DA97E8D00A0C357 /* SwiftArm */,
+				DC47C2A91DA9909F00A0C357 /* Frameworks */,
+				DC47C2911DA97E8D00A0C357 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC47C2911DA97E8D00A0C357 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC47C2901DA97E8D00A0C357 /* SwiftArm.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC47C2921DA97E8D00A0C357 /* SwiftArm */ = {
+			isa = PBXGroup;
+			children = (
+				DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */,
+				DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */,
+				DC47C2951DA97E8D00A0C357 /* Assets.xcassets */,
+				DC47C2971DA97E8D00A0C357 /* MainMenu.xib */,
+				DC47C29A1DA97E8D00A0C357 /* Info.plist */,
+				DC47C2B01DA99B3300A0C357 /* SwiftArmBridgingHeader.h */,
+			);
+			path = SwiftArm;
+			sourceTree = "<group>";
+		};
+		DC47C2A91DA9909F00A0C357 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC47C2AA1DA9909F00A0C357 /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC47C28F1DA97E8D00A0C357 /* SwiftArm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC47C29D1DA97E8D00A0C357 /* Build configuration list for PBXNativeTarget "SwiftArm" */;
+			buildPhases = (
+				DC47C28C1DA97E8D00A0C357 /* Sources */,
+				DC47C28D1DA97E8D00A0C357 /* Frameworks */,
+				DC47C28E1DA97E8D00A0C357 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftArm;
+			productName = SwiftArm;
+			productReference = DC47C2901DA97E8D00A0C357 /* SwiftArm.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC47C2881DA97E8D00A0C357 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = infiniteNIL;
+				TargetAttributes = {
+					DC47C28F1DA97E8D00A0C357 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = MB9RW2WD7P;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DC47C28B1DA97E8D00A0C357 /* Build configuration list for PBXProject "SwiftArm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC47C2871DA97E8D00A0C357;
+			productRefGroup = DC47C2911DA97E8D00A0C357 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC47C28F1DA97E8D00A0C357 /* SwiftArm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC47C28E1DA97E8D00A0C357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC47C2961DA97E8D00A0C357 /* Assets.xcassets in Resources */,
+				DC47C2991DA97E8D00A0C357 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC47C28C1DA97E8D00A0C357 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC47C2941DA97E8D00A0C357 /* AppDelegate.swift in Sources */,
+				DC47C2B21DAB1C5400A0C357 /* OWIRobotArm.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DC47C2971DA97E8D00A0C357 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC47C2981DA97E8D00A0C357 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC47C29B1DA97E8D00A0C357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC47C29C1DA97E8D00A0C357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		DC47C29E1DA97E8D00A0C357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MB9RW2WD7P;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = SwiftArm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lusb-1.0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinitenil.SwiftArm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftArm/SwiftArmBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DC47C29F1DA97E8D00A0C357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MB9RW2WD7P;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = SwiftArm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lusb-1.0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinitenil.SwiftArm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftArm/SwiftArmBridgingHeader.h;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC47C28B1DA97E8D00A0C357 /* Build configuration list for PBXProject "SwiftArm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC47C29B1DA97E8D00A0C357 /* Debug */,
+				DC47C29C1DA97E8D00A0C357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC47C29D1DA97E8D00A0C357 /* Build configuration list for PBXNativeTarget "SwiftArm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC47C29E1DA97E8D00A0C357 /* Debug */,
+				DC47C29F1DA97E8D00A0C357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC47C2881DA97E8D00A0C357 /* Project object */;
+}
