@@ -23,6 +23,7 @@
 		DC47C2AA1DA9909F00A0C357 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		DC47C2B01DA99B3300A0C357 /* SwiftArmBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftArmBridgingHeader.h; sourceTree = "<group>"; };
 		DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OWIRobotArm.swift; sourceTree = "<group>"; };
+		DC47C2B31DAD987100A0C357 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		DC47C2921DA97E8D00A0C357 /* SwiftArm */ = {
 			isa = PBXGroup;
 			children = (
+				DC47C2B31DAD987100A0C357 /* README.md */,
 				DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */,
 				DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */,
 				DC47C2951DA97E8D00A0C357 /* Assets.xcassets */,
