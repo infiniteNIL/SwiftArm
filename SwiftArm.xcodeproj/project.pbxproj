@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2089151DB18C2C00CA4D9C /* USB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2089141DB18C2C00CA4D9C /* USB.swift */; };
 		DC47C2941DA97E8D00A0C357 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */; };
 		DC47C2961DA97E8D00A0C357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC47C2951DA97E8D00A0C357 /* Assets.xcassets */; };
 		DC47C2991DA97E8D00A0C357 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC47C2971DA97E8D00A0C357 /* MainMenu.xib */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC2089141DB18C2C00CA4D9C /* USB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USB.swift; sourceTree = "<group>"; };
 		DC47C2901DA97E8D00A0C357 /* SwiftArm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftArm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC47C2951DA97E8D00A0C357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				DC47C2B31DAD987100A0C357 /* README.md */,
 				DC47C2931DA97E8D00A0C357 /* AppDelegate.swift */,
 				DC47C2B11DAB1C5400A0C357 /* OWIRobotArm.swift */,
+				DC2089141DB18C2C00CA4D9C /* USB.swift */,
 				DC47C2951DA97E8D00A0C357 /* Assets.xcassets */,
 				DC47C2971DA97E8D00A0C357 /* MainMenu.xib */,
 				DC47C29A1DA97E8D00A0C357 /* Info.plist */,
@@ -152,6 +155,7 @@
 			files = (
 				DC47C2941DA97E8D00A0C357 /* AppDelegate.swift in Sources */,
 				DC47C2B21DAB1C5400A0C357 /* OWIRobotArm.swift in Sources */,
+				DC2089151DB18C2C00CA4D9C /* USB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +321,7 @@
 				DC47C29F1DA97E8D00A0C357 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

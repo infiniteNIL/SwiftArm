@@ -23,76 +23,62 @@ class OWIRobotArm {
     }
 
     init?() {
-        var ok = libusb_init(nil) == 0
-        if !ok {
-            print("failed to initialize libusb")
+        guard let usb = USB() else {
             return nil
         }
 
-        libusb_set_debug(nil, 2)
+        self.usb = usb
 
-        //  libusb_device **devs;
-        var devices: UnsafeMutablePointer<OpaquePointer?>?     // [libusb_device?]?
-        let deviceCount = libusb_get_device_list(nil, &devices)
+        usb.logLevel = .warning
 
-        guard deviceCount > 0, let usbDevices = devices else {
-            libusb_exit(nil)
+        let ARM_VENDOR: UInt16 = 0x1267
+        let ARM_PRODUCT: UInt16 = 0
+
+        guard let dev = usb.device(vendorID: ARM_VENDOR, productID: ARM_PRODUCT) else {
+            print("Robot arm not found")
             return nil
         }
 
-        //  libusb_device *dev;
-        guard let dev = find_arm(usbDevices) else {
-            print("Robot Arm not found")
-            libusb_free_device_list(usbDevices, 1)
-            libusb_exit(nil)
+        arm = dev
+        if !arm.open() {
+            print("Can't connect to arm")
             return nil
         }
-
-        //  struct libusb_device_handle *devh = NULL;
-        var arm: OpaquePointer?    // libusb_device_handle?
-        ok = libusb_open(dev.pointee, &arm) == 0
-        if !ok {
-            print("Error opening device")
-            libusb_free_device_list(usbDevices, 1)
-            libusb_exit(nil)
-            return nil
-        }
-
-        libusb_free_device_list(usbDevices, 1)
-        armDeviceHandle = arm!
     }
 
     deinit {
-        libusb_close(armDeviceHandle)
-        libusb_exit(nil)
+        light(on: false)
+        allStop()
+        arm.close()
+        arm = nil
     }
 
     func allStop() {
         commands[0] = 0
         commands[1] = 0
-        send(commands: commands)
+        send()
     }
 
     func openGrip() {
         commands[0] &= 0xFC		// Turn off bit 1+2
         commands[0] |= 0x02		// Grip Open
-        send(commands: commands)
+        send()
     }
 
     func closeGrip() {
         commands[0] &= 0xFC		// Turn off bit 1+2
         commands[0] |= 0x01		// Grip Close
-        send(commands: commands)
+        send()
     }
 
     func stopGrip() {
         commands[0] &= 0xFC		// Turn off bit 1+2
-        send(commands: commands)
+        send()
     }
 
     func light(on: Bool) {
         commands[2] = on ? 1 : 0
-        send(commands: commands)
+        send()
     }
 
     func moveElbow(direction: JointDirection) {
@@ -104,7 +90,7 @@ class OWIRobotArm {
             default:    break
         }
 
-        send(commands: commands)
+        send()
     }
 
     func moveShoulder(direction: JointDirection) {
@@ -116,7 +102,7 @@ class OWIRobotArm {
             case .none: break
         }
 
-        send(commands: commands)
+        send()
     }
 
     func moveWrist(direction: JointDirection) {
@@ -128,7 +114,7 @@ class OWIRobotArm {
             case .none: break
         }
 
-        send(commands: commands)
+        send()
     }
 
     func rotateBase(direction: RotationDirection) {
@@ -138,57 +124,17 @@ class OWIRobotArm {
             default:                commands[1] = 0
         }
 
-        send(commands: commands)
+        send()
     }
 
+    private func send() {
+        let result = arm.send(requestType: 0x40, request: 6, value: 0x100, index: 0, commands: commands)
+        if result < 0 || result != Int32(commands.count) {
+            print("Error sending commands to arm")
+        }
+    }
+
+    private let usb: USB
+    private var arm: USBDevice!
     private(set) var commands: [UInt8] = [0, 0, 0]
-    fileprivate let armDeviceHandle: OpaquePointer
-}
-
-private let ARM_VENDOR: UInt16 = 0x1267
-private let ARM_PRODUCT: UInt16 = 0
-private let CMD_DATALEN: UInt16 = 3
-
-fileprivate extension OWIRobotArm {
-
-    func send(commands: [UInt8]) {
-        var cmd = commands
-        print(String(format: "Sending %02X %02X %02X", Int(cmd[0]), Int(cmd[1]), Int(cmd[2])))
-
-        let errorOrBytesTransferred = libusb_control_transfer(armDeviceHandle,
-                                                              0x40,   //uint8_t 	bmRequestType,
-                                                              6,      //uint8_t 	bRequest,
-                                                              0x100,  //uint16_t 	wValue,
-                                                              0,      //uint16_t 	wIndex,
-                                                              &cmd,
-                                                              CMD_DATALEN,
-                                                              0)
-
-        if errorOrBytesTransferred < 0 {
-            print("Write err \(errorOrBytesTransferred).")
-        }
-    }
-
-}
-
-//libusb_device * find_arm(libusb_device **devs)
-private func find_arm(_ devices: UnsafePointer<OpaquePointer?>) -> UnsafePointer<OpaquePointer?>? {
-    var deviceDescriptor = libusb_device_descriptor()
-
-    var device = devices
-    while device.pointee != nil {
-        let ok = libusb_get_device_descriptor(device.pointee, &deviceDescriptor) == 0
-        if !ok {
-            fputs("failed to get device descriptor", stderr)
-            return nil
-        }
-
-        if deviceDescriptor.idVendor == ARM_VENDOR && deviceDescriptor.idProduct == ARM_PRODUCT {
-            return device
-        }
-
-        device = device.successor()
-    }
-
-    return nil
 }

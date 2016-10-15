@@ -26,10 +26,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var segGrip: NSSegmentedControl!
     @IBOutlet weak var segLight: NSSegmentedControl!
 
-    private let robotArm = OWIRobotArm()
+    private var robotArm = OWIRobotArm()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         updateDisplay()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        robotArm = nil
     }
 
     @IBAction func segControlClicked(_ sender: NSSegmentedControl) {
