@@ -34,12 +34,12 @@ class OWIRobotArm {
         let ARM_VENDOR: UInt16 = 0x1267
         let ARM_PRODUCT: UInt16 = 0
 
-        guard let dev = usb.device(vendorID: ARM_VENDOR, productID: ARM_PRODUCT) else {
+        arm = usb.device(vendorID: ARM_VENDOR, productID: ARM_PRODUCT)
+        if arm == nil {
             print("Robot arm not found")
             return nil
         }
 
-        arm = dev
         if !arm.open() {
             print("Can't connect to arm")
             return nil
@@ -128,7 +128,14 @@ class OWIRobotArm {
     }
 
     private func send() {
-        let result = arm.send(requestType: 0x40, request: 6, value: 0x100, index: 0, commands: commands)
+        print(String(format: "Sending %02X %02X %02X", Int(commands[0]), Int(commands[1]), Int(commands[2])))
+
+        let result = arm.send(requestType: UInt8(LIBUSB_REQUEST_TYPE_VENDOR.rawValue),
+                              request: 6,
+                              value: 0x100,
+                              index: 0,
+                              commands: commands)
+
         if result < 0 || result != Int32(commands.count) {
             print("Error sending commands to arm")
         }

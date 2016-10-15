@@ -20,6 +20,10 @@ class USB {
     }
 
     deinit {
+        let unreferenceDevices: Int32 = 1
+        let device_list = UnsafeMutablePointer(mutating: devices.baseAddress)
+        libusb_free_device_list(device_list, unreferenceDevices)
+
         libusb_exit(nil)
     }
     
@@ -38,22 +42,7 @@ class USB {
     }
 
     func device(vendorID: UInt16, productID: UInt16) -> USBDevice? {
-        var devices: UnsafeMutablePointer<OpaquePointer?>?
-        let deviceCount = libusb_get_device_list(nil, &devices)
-
-        guard deviceCount > 0, devices != nil else {
-            fputs("Unable to get list of USB devices", stderr)
-            return nil
-        }
-
-        defer {
-            let unreferenceDevices: Int32 = 1
-            libusb_free_device_list(devices, unreferenceDevices)
-        }
-
-        let newDevices = UnsafeBufferPointer(start: devices!, count: deviceCount)
-
-        let device = newDevices.first { device -> Bool in
+        let device = devices.first { device -> Bool in
             var deviceDescriptor = libusb_device_descriptor()
             let ok = libusb_get_device_descriptor(device, &deviceDescriptor) == LIBUSB_SUCCESS.rawValue
             if !ok { fatalError("failed to get device descriptor") }
@@ -70,6 +59,15 @@ class USB {
             return nil
         }
     }
+
+    private lazy var devices: UnsafeBufferPointer<OpaquePointer?> = {
+        var devices: UnsafeMutablePointer<OpaquePointer?>?
+        let deviceCount = libusb_get_device_list(nil, &devices)
+        if deviceCount < 0 {
+            fatalError("Unable to get list of USB devices")
+        }
+        return UnsafeBufferPointer(start: devices, count: deviceCount)
+    }()
 
 }
 
@@ -106,17 +104,18 @@ class USBDevice {
     }
 
     func send(requestType: UInt8, request: UInt8, value: UInt16, index: UInt16, commands: [UInt8]) -> Int32 {
-        var cmd = commands
-        print(String(format: "Sending %02X %02X %02X", Int(cmd[0]), Int(cmd[1]), Int(cmd[2])))
+        var cmds = commands
+
+        let unlimitedTimeout: UInt32 = 0
 
         let errorOrBytesTransferred = libusb_control_transfer(deviceHandle,
-            requestType,    //uint8_t 	bmRequestType,
-            request,        //uint8_t 	bRequest,
-            value,          //uint16_t 	wValue,
-            index,          //uint16_t 	wIndex,
-            &cmd,
-            UInt16(cmd.count),  // CMD_DATALEN,
-            0)
+            requestType,        // uint8_t 	bmRequestType,
+            request,            // uint8_t 	bRequest,
+            value,              // uint16_t wValue,
+            index,              // uint16_t wIndex,
+            &cmds,
+            UInt16(cmds.count),
+            unlimitedTimeout)
 
         if errorOrBytesTransferred < 0 {
             print("Write err \(errorOrBytesTransferred).")
