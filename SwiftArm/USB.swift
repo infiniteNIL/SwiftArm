@@ -38,33 +38,37 @@ class USB {
     }
 
     func device(vendorID: UInt16, productID: UInt16) -> USBDevice? {
-        //  libusb_device **devs;
-        var devices: UnsafeMutablePointer<OpaquePointer?>?     // [libusb_device?]?
+        var devices: UnsafeMutablePointer<OpaquePointer?>?
         let deviceCount = libusb_get_device_list(nil, &devices)
 
-        guard deviceCount > 0, let usbDevices = devices else {
+        guard deviceCount > 0, devices != nil else {
+            fputs("Unable to get list of USB devices", stderr)
             return nil
         }
-        defer { libusb_free_device_list(usbDevices, 1) }
 
-        var deviceDescriptor = libusb_device_descriptor()
-
-        var device = usbDevices
-        while device.pointee != nil {
-            let ok = libusb_get_device_descriptor(device.pointee, &deviceDescriptor) == 0
-            if !ok {
-                fputs("failed to get device descriptor", stderr)
-                return nil
-            }
-
-            if deviceDescriptor.idVendor == vendorID && deviceDescriptor.idProduct == productID {
-                return USBDevice(device.pointee!)
-            }
-
-            device = device.successor()
+        defer {
+            let unreferenceDevices: Int32 = 1
+            libusb_free_device_list(devices, unreferenceDevices)
         }
-        
-        return nil
+
+        let newDevices = UnsafeBufferPointer(start: devices!, count: deviceCount)
+
+        let device = newDevices.first { device -> Bool in
+            var deviceDescriptor = libusb_device_descriptor()
+            let ok = libusb_get_device_descriptor(device, &deviceDescriptor) == LIBUSB_SUCCESS.rawValue
+            if !ok { fatalError("failed to get device descriptor") }
+
+            return deviceDescriptor.idVendor == vendorID &&
+                   deviceDescriptor.idProduct == productID
+        }
+
+        if let foundDevice = device {
+            return USBDevice(foundDevice!)
+        }
+        else {
+            print("Unable to find device")
+            return nil
+        }
     }
 
 }
